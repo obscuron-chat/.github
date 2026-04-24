@@ -18,22 +18,22 @@
 # Obscuron Chat
 
 ## About
-Obscuron Chat is a secure messaging application built with three core components:
-- **obscuron-client**: React + TypeScript frontend interface
-- **nodejs-core**: Node.js API backend with MongoDB integration
-- **flask-core**: Flask API backend for additional services
+Obscuron Chat is a secure messaging application built with three components:
+- **obscuron-web**: React + TypeScript frontend interface
+- **nodejs-api**: Node.js API backend with MongoDB integration
+- **flask-api**: Flask API backend for additional services
 
 ## Installation
 1. Clone repositories:
 ```bash
-git clone https://github.com/obscuron/obscuron-client.git
-git clone https://github.com/obscuron/nodejs-core.git
-git clone https://github.com/obscuron/flask-core.git
+git clone https://github.com/obscuron/obscuron-web.git
+git clone https://github.com/obscuron/nodejs-api.git
+git clone https://github.com/obscuron/flask-api.git
 ```
 
 2. Configure environment variables:
 ```bash
-# nodejs-core/.env
+# nodejs-api/.env
 MONGODB_URI=mongodb://...
 JWT_SECRET=your-secret-key
 PORT=3000
@@ -43,37 +43,37 @@ DEBUG=true
 3. Install dependencies:
 ```bash
 # For React client
-cd obscuron-client && npm install
+cd obscuron-web && npm install
 
 # For Node.js backend
-cd nodejs-core && npm install
+cd nodejs-api && npm install
 
 # For Flask backend
-cd flask-core && pip install -r requirements.txt
+cd flask-api && pip install -r requirements.txt
 ```
 
 4. Build Docker images:
 ```bash
 # For client
-cd obscuron-client && docker build -t obscuron-client .
+cd obscuron-web && docker build -t obscuron-web .
 
-# For Node.js core
-cd nodejs-core && docker-compose up --build
+# For Node.js API
+cd nodejs-api && docker-compose up --build
 ```
 
 ## Usage
 1. Start backend services:
 ```bash
-# Node.js core (in separate terminals)
-cd nodejs-core && docker-compose up
+# Node.js API (in separate terminals)
+cd nodejs-api && docker-compose up
 
-# Flask core
-cd flask-core && python3 app.py
+# Flask API
+cd flask-api && python3 app.py
 ```
 
 2. Launch frontend:
 ```bash
-cd obscuron-client && npm run dev
+cd obscuron-web && npm run dev
 ```
 
 ## Tech Stack
@@ -84,12 +84,12 @@ cd obscuron-client && npm run dev
 - **Development Tools**: Vite (client), ESLint (client), WebSocket (real-time chat)
 
 ## API Endpoints
-- **Node.js Core**:
+- **Node.js API**:
   - WebSocket: `ws://localhost:3000/room/:id`
   - HTTP API:
     - `POST /auth` - Authentication/Registration
     - `POST /profile` - Profile Updates
     - `GET /users` - User Listing
 
-- **Flask Core**:
-  - Available routes defined in `flask-core/app.py`
+- **Flask API**:
+  - Available routes defined in `flask-api/app.py`
